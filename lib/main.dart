@@ -97,10 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
           _isRecording = true;
         });
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(_getSnackBar('Permission is not granted'));
+        _getSnackBar('Permission is not granted');
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(_getSnackBar('Finish playing before recording'));
+      _getSnackBar('Finish playing before recording');
     }
   }
 
@@ -119,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _isPlaying = true;
       });
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(_getSnackBar('Finish recording before playing'));
+      _getSnackBar('Finish recording before playing');
     }
   }
 
@@ -130,9 +130,11 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  SnackBar _getSnackBar([String message = 'Error']) {
-    return SnackBar(
-      content: Text(message),
+  ScaffoldFeatureController _getSnackBar([String message = 'Error']) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
     );
   }
 
